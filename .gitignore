@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 *.iml
 .gradle
 /local.properties
@@ -76,4 +76,5 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
->>>>>>> 6c27a344c95bac2ae246495c34b315eb86ddfd6e
+
+.idea/*
