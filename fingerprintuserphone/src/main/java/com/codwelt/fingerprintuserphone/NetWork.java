@@ -30,7 +30,7 @@ public class NetWork {
 
     }
 
-    public Context getContext()
+    private Context getContext()
     {
         return this.context;
     }
