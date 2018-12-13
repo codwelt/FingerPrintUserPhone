@@ -40,7 +40,7 @@ public class FingerprintUserPhone {
 
 
         jsSIM.put("countyISO", phone.getSIMCountryISO());
-s
+
 
         JSONObject jsSimOperator  = new JSONObject();
 
