@@ -29,7 +29,7 @@ public class App {
      * Devuelve el GUID de la instalacion
      * @return
      */
-    public String getGUID()
+    public String getUUID()
     {
         SharedPreferences preferencias = PreferenceManager.getDefaultSharedPreferences(this.context);
 

@@ -91,7 +91,9 @@ public class FingerprintUserPhone {
 
         jsApp.put("versionCode", AppVersion);
 
-        jsApp.put("guid",app.getGUID());
+        jsApp.put("uuid",app.getUUID());
+
+        jsObRoot.put("app",jsApp);
 
 
         return  jsObRoot;
