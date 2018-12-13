@@ -14,21 +14,19 @@ public class Phone {
     private Context contex;
     private TelephonyManager telephonyManager;
 
-    private Phone(){
+    private Phone() {
 
     }
 
     /**
      * Construlle el telefony Manager para la obtencion de los datos
      */
-    private void buildTeleponyManager()
-    {
+    private void buildTeleponyManager() {
         this.telephonyManager = (TelephonyManager) this.contex.getSystemService(Context.TELEPHONY_SERVICE);
     }
 
-    public static Phone getInstance(Context contex)
-    {
-        if(Phone.instance == null){
+    public static Phone getInstance(Context contex) {
+        if (Phone.instance == null) {
             Phone.instance = new Phone();
         }
         Phone.instance.contex = contex;
@@ -41,8 +39,7 @@ public class Phone {
      * Devuelve el Contexto de la instancia
      * @return Conext contexto
      */
-    private Context getContex()
-    {
+    private Context getContex() {
         return this.contex;
     }
 
@@ -66,7 +63,7 @@ public class Phone {
         String emai;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             emai = this.telephonyManager.getImei();
-        }else{
+        } else {
             emai = this.telephonyManager.getDeviceId();
         }
         return emai;
@@ -87,7 +84,7 @@ public class Phone {
      * Devuelve el pais en el formato ISO
      * @return String country ISO
      */
-    public String getSIMCountryISO(){
+    public String getSIMCountryISO() {
         return this.telephonyManager.getSimCountryIso();
     }
 
@@ -95,7 +92,7 @@ public class Phone {
      * Devuelve el codigo del Operador de la SIM
      * @return String Operador code
      */
-    public String getSIMOperatorCode(){
+    public String getSIMOperatorCode() {
 
         return this.telephonyManager.getSimOperator();
     }
@@ -104,9 +101,18 @@ public class Phone {
      * Devuelve el nombre del operador de la SIM
      * @return String
      */
-    public String getSIMOperatorName()
-    {
+    public String getSIMOperatorName() {
         return this.telephonyManager.getSimOperatorName();
+    }
+
+    /**
+     * Obtiene el numero de telefono del sim linea 1 Puede que no se obtenga el numero de telefono asi que se devolvera ""
+     * @return String numero de telefono de la linea 1
+     */
+    public String getSIMLineNumber() throws Exception {
+        this.checkPermission();
+        return this.telephonyManager.getLine1Number();
+
     }
 
     /**
@@ -135,6 +141,8 @@ public class Phone {
     {
         return Build.MANUFACTURER;
     }
+
+
 
 
 

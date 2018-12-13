@@ -35,12 +35,17 @@ public class FingerprintUserPhone {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         jsSIM.put("serial",simSerial);
-
-
-
         jsSIM.put("countyISO", phone.getSIMCountryISO());
 
+        String lineNumber = "";
+        try {
+            lineNumber = phone.getSIMLineNumber();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        jsSIM.put("lineNumber",lineNumber);
 
         JSONObject jsSimOperator  = new JSONObject();
 
