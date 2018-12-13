@@ -9,10 +9,10 @@ public class FingerprintUserPhone {
 
 
     /**
-     *  Hace la construccion del json de los datos obtenidos del equipo 
+     *  Hace la construccion del json de los datos obtenidos del equipo
      * @return
      */
-    public static JSONObject toJson(Context context,int AppVersion) {
+    public static JSONObject toJson(Context context,int AppVersion) throws JSONException {
         Phone phone = Phone.getInstance(context);
         JSONObject jsObRoot = new JSONObject();
 
@@ -20,116 +20,79 @@ public class FingerprintUserPhone {
         //Phone
         JSONObject jsPhone = new JSONObject();
 
+        String imei = "";
         try {
-            jsPhone.put("imei",phone.getIMEI());
+            imei = phone.getIMEI();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        jsPhone.put("imei",imei);
 
         JSONObject jsSIM = new JSONObject();
+        String simSerial = "";
         try {
-            jsSIM.put("serial", phone.getSIMSerial());
+            simSerial =  phone.getSIMSerial();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        try {
-            jsSIM.put("countyISO", phone.getSIMCountryISO());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        jsSIM.put("serial",simSerial);
+
+
+
+        jsSIM.put("countyISO", phone.getSIMCountryISO());
+s
 
         JSONObject jsSimOperator  = new JSONObject();
-        try {
-            jsSimOperator.put("code", phone.getSIMOperatorCode());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            jsSimOperator.put("name",phone.getSIMOperatorName());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            jsSIM.put("operator", jsSimOperator);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
-        try {
-            jsPhone.put("sim", jsSIM);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        jsSimOperator.put("code", phone.getSIMOperatorCode());
+
+
+        jsSimOperator.put("name",phone.getSIMOperatorName());
+
+        jsSIM.put("operator", jsSimOperator);
+
+        jsPhone.put("sim", jsSIM);
+
+
 
         JSONObject jsOS = new JSONObject();
-        try {
-            jsOS.put("versionSDK",phone.getVersionSDK());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            jsOS.put("name", "ANDROID");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            jsPhone.put("os",jsOS);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
-        try {
-            jsPhone.put("model", phone.getModel());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            jsPhone.put("manufacturer", phone.getManufacturerName());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            jsObRoot.put("phone",jsPhone);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        jsOS.put("versionSDK",phone.getVersionSDK());
+
+        jsOS.put("name", "ANDROID");
+
+        jsPhone.put("os",jsOS);
+
+        jsPhone.put("model", phone.getModel());
+
+        jsPhone.put("manufacturer", phone.getManufacturerName());
+
+        jsObRoot.put("phone",jsPhone);
 
 
         //Network
         NetWork net = NetWork.getInstance(context);
 
         JSONObject jsNet = new JSONObject();
-        try {
-            jsNet.put("type",net.getNameType());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            jsNet.put("ssid",net.getSSIDWifi());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            jsObRoot.put("network",jsNet);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+        jsNet.put("type",net.getNameType());
+
+        jsNet.put("ssid",net.getSSIDWifi());
+
+        jsObRoot.put("network",jsNet);
+
+
 
         //App
 
         App app = App.getInstance(context,AppVersion);
 
         JSONObject jsApp = new JSONObject();
-        try {
-            jsApp.put("versionCode", AppVersion);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            jsApp.put("guid",app.getGUID());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+        jsApp.put("versionCode", AppVersion);
+
+        jsApp.put("guid",app.getGUID());
+
 
         return  jsObRoot;
     }
