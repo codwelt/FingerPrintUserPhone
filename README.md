@@ -19,6 +19,6 @@ allprojects {
 Step 2. Add the dependency
 ```java
 	dependencies {
-	        implementation 'com.github.codwelt:FingerPrintUserPhone:1.0.2'
+	        implementation 'com.github.codwelt:FingerPrintUserPhone:1.0.3'
 	}
 ```
