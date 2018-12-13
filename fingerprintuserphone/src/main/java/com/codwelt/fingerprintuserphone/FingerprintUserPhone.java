@@ -9,7 +9,7 @@ public class FingerprintUserPhone {
 
 
     /**
-     *
+     *  Hace la construccion del json de los datos obtenidos del equipo 
      * @return
      */
     public static JSONObject toJson(Context context,int AppVersion) {
