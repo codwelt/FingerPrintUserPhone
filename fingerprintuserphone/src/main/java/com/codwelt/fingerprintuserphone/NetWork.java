@@ -101,7 +101,7 @@ public class NetWork {
                 if(wifi.isConnected()){
                     WifiManager wifiManager = (WifiManager) this.context.getSystemService (Context.WIFI_SERVICE);
                     WifiInfo info = wifiManager.getConnectionInfo ();
-                    return info.getSSID();
+                    return info.getSSID().replace("\"","");
                 }
             }
         }
